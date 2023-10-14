@@ -16,7 +16,7 @@ export const fetchUsersList = (users: User[])  => (
 
 export const fetchExpensesList = (expenseList: Expense[])  => (
     {
-        type: "FETCH_EXPENSE_SUCESS",
+        type: "FETCH_EXPENSE_SUCCESS",
         payload: expenseList
     }
 )
@@ -53,7 +53,7 @@ export const getUsers = ()  => async (dispatch : Dispatch) =>{
     try{
       const response = await fetch("https://assignment-nineteen-backend.developersourav.repl.co/income")
       const receivedResponse = await response.json()
-      const itemsList = receivedResponse.users
+      const itemsList = receivedResponse.income
       console.log("Response", receivedResponse, itemsList)
       dispatch(fetchIncomeList(itemsList))
     }
@@ -64,9 +64,9 @@ export const getUsers = ()  => async (dispatch : Dispatch) =>{
 
   export const getExpenseList = ()  => async (dispatch : Dispatch) =>{
     try{
-      const response = await fetch("https://assignment-nineteen-backend.developersourav.repl.co/expense")
+      const response = await fetch("https://assignment-nineteen-backend.developersourav.repl.co/expenses")
       const receivedResponse = await response.json()
-      const itemsList = receivedResponse.users
+      const itemsList = receivedResponse.expenses
       console.log("Response", receivedResponse, itemsList)
       dispatch(fetchExpensesList(itemsList))
     }
@@ -79,7 +79,7 @@ export const getUsers = ()  => async (dispatch : Dispatch) =>{
     try{
       const response = await fetch("https://assignment-nineteen-backend.developersourav.repl.co/savings")
       const receivedResponse = await response.json()
-      const itemsList = receivedResponse.users
+      const itemsList = receivedResponse.savings
       console.log("Response", receivedResponse, itemsList)
       dispatch(fetchSavingsList(itemsList))
     }

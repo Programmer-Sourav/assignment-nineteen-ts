@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { FinanceState, User } from "../reducer/FinanceReducer"
-import { getUsers } from "../actionCreators/actions.tsx"
+import { fetchUsersList, getUsers } from "../actionCreators/actions.tsx"
 
 
 const Home : React.FC = () : JSX.Element =>{
@@ -13,7 +13,7 @@ const Home : React.FC = () : JSX.Element =>{
     console.log("Users ", users)
 
     useEffect(() => {
-        dispatch(getUsers());
+        dispatch(getUsers())
       }, []);
 
     return(

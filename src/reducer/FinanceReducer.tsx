@@ -1,4 +1,6 @@
 
+
+
 export type Income = {
   id: number, 
   description: string, 
@@ -48,8 +50,8 @@ const initialState : FinanceState =  {
 
 type Action = 
 | { type: "FETCH_INCOME_SUCESS", payload: Income}
-| { type: "FETCH_EXPENSE_SUCCESS"}
-| { type: "FETCH_SAVINGS_SUCCESS"}
+| { type: "FETCH_EXPENSE_SUCCESS", payload: Expense}
+| { type: "FETCH_SAVINGS_SUCCESS", payload: Savings}
 | { type: "CALCULATE_TOTAL_INCOME"}
 | {type: "CALCULATE_TOTAL_EXPENSE"}
 | {type: "CALCULATE_TOTAL_SAVINGS"}
@@ -59,11 +61,12 @@ type Action =
 const financeReducer = (state  : FinanceState = initialState, action : Action ) : FinanceState =>{
     switch(action.type){
         case "FETCH_INCOME_SUCESS": 
-            return {...state, incomeList : [...state.incomeList, action.payload]}
-        case "FETCH_EXPENSE_SUCCESS": 
-             return {...state}
+            return {...state, incomeList : [...state.incomeList, ...action.payload]}
+        case "FETCH_EXPENSE_SUCCESS":
+          console.log(444, action.payload) 
+             return {...state, expenseList: [...state.expenseList, ...action.payload]}
         case "FETCH_SAVINGS_SUCCESS": 
-             return {...state}
+             return {...state, savingsList : [...state.savingsList, ...action.payload]}
         case "CALCULATE_TOTAL_INCOME":
              return {...state}
         case "CALCULATE_TOTAL_EXPENSE":
