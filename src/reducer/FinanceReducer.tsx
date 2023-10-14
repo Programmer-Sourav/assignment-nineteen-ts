@@ -53,7 +53,7 @@ type Action =
 | { type: "CALCULATE_TOTAL_INCOME"}
 | {type: "CALCULATE_TOTAL_EXPENSE"}
 | {type: "CALCULATE_TOTAL_SAVINGS"}
-| {type: "FETCH_USER_SUCCESS"}
+| {type: "FETCH_USER_SUCCESS", payload: User}
 | {type: "SORT_DATA"}
 
 const financeReducer = (state  : FinanceState = initialState, action : Action ) : FinanceState =>{
@@ -73,7 +73,7 @@ const financeReducer = (state  : FinanceState = initialState, action : Action ) 
         case "SORT_DATA":
             return {...state}
         case "FETCH_USER_SUCCESS": 
-            return {...state}    
+            return {...state, users: [...state.users, ...action.payload]}    
         default: 
         return state   
     }
