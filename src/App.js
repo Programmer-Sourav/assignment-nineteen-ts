@@ -12,11 +12,11 @@ import Home from './pages/Home.tsx';
 function App() {
   return (
     <div className="App">
-      <Link to="/">Home</Link>
-      <Link to="/addentry">Make An Entry</Link>
-      <Link to="/income-transaction">Income Transactions</Link>
-      <Link to="/expense-transaction">Expense Transactions</Link>
-      <Link to="/savings-transaction">Savings Transactions</Link>
+      <Link to="/" className='linkgap'>Home</Link>
+      <Link to="/addentry" className='linkgap'>Make An Entry</Link>
+      <Link to="/income-transaction" className='linkgap' >Income Transactions</Link>
+      <Link to="/expense-transaction" className='linkgap'>Expense Transactions</Link>
+      <Link to="/savings-transaction" className='linkgap'>Savings Transactions</Link>
 
       <Routes>
         <Route path='/' element={<Home/>}></Route>

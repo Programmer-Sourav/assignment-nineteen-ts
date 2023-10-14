@@ -71,11 +71,11 @@ const financeReducer = (state  : FinanceState = initialState, action : Action ) 
         case "FETCH_SAVINGS_SUCCESS": 
              return {...state, savingsList : action.payload}
         case "CALCULATE_TOTAL_INCOME":
-             return {...state}
+             return {...state, totalIncome : state.incomeList.reduce((acc, item)=>(acc+item.amount), 0)}
         case "CALCULATE_TOTAL_EXPENSE":
-            return {...state}
+            return {...state, totalExpense: state.expenseList.reduce((acc,item)=>(acc+item.amount),0)}
         case "CALCULATE_TOTAL_SAVINGS": 
-             return {...state}
+             return {...state, totalSavings : state.savingsList.reduce((acc, item)=>(acc+item.amount), 0)}
         case "SORT_INCOME_DATA":
             return {...state, incomeList: state.incomeList.sort((a :Income, b : Income)=>a.amount>b.amount ? 1 : -1)}
         case "SORT_SAVINGS_DATA":

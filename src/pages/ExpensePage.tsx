@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { FinanceState} from "../reducer/FinanceReducer"
-import { getExpenseList, sortExpensesData } from "../actionCreators/actions"
+import { calculateTotalExpenses, getExpenseList, sortExpensesData } from "../actionCreators/actions"
 import { DropdownWithLabel } from "../components/DropdownWithLabel"
 import { ThunkDispatch } from "redux-thunk"
 import { AnyAction } from "redux"
@@ -15,7 +15,7 @@ const ExpensePage : React.FC = () : JSX.Element => {
     const [checked, setChecked] = useState<boolean>(false)
     const [categories, setCategories] = useState<string> ("")
    
-    
+    const totalExpense = useSelector((state: FinanceState)=>state.totalExpense)
 
     useEffect(()=>{dispatch(getExpenseList())},[])
 
@@ -47,6 +47,8 @@ const ExpensePage : React.FC = () : JSX.Element => {
       filteredList = expenses.filter((expense)=>(expense.category.includes(categories)))
      }
 
+     useEffect(()=>{calculateTotalExpenses()}, [])
+
     return(
         <div> 
             <label>Sort Data 
@@ -57,6 +59,8 @@ const ExpensePage : React.FC = () : JSX.Element => {
                    <div key={index}>{state.description} - {state.amount} - {state.description} </div>
              ))
          }
+         <hr/>
+         <h2>Total Expenses: {totalExpense}</h2>
         </div>
     )
 }

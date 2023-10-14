@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { FinanceState, Savings} from "../reducer/FinanceReducer"
-import { getSavingsList, sortSavingsData } from "../actionCreators/actions"
+import { calculateTotalSavings, getSavingsList, sortSavingsData } from "../actionCreators/actions"
 import { DropdownWithLabel } from "../components/DropdownWithLabel"
 import { ThunkDispatch } from "redux-thunk"
 import { AnyAction } from "redux"
@@ -17,6 +17,7 @@ const SavingsPage : React.FC  = () : JSX.Element =>{
 
    const dispatch : AppDispatch = useDispatch()
    const savingsList = useSelector((state: FinanceState)=>state.savingsList)
+   const totalSavings  = useSelector((state: FinanceState)=>(state.totalSavings))
 
    useEffect(() => {
     // Dispatch the action creator without issues
@@ -47,7 +48,8 @@ const SavingsPage : React.FC  = () : JSX.Element =>{
  if(categories!=="Select"){
   filteredList = savingsList.filter((savings)=>(savings.category.includes(categories)))
  }
-
+ 
+ useEffect(()=>{dispatch(calculateTotalSavings())},[])
     return(
         <div>
              <label>Sort Data 
@@ -58,6 +60,8 @@ const SavingsPage : React.FC  = () : JSX.Element =>{
                     <div key={index}> {savings.description} - {savings.amount} - {savings.category} </div>
                 ))
             }
+            <hr></hr>
+            <h2> Total Savings : {totalSavings}</h2>
         </div>
     )
 }

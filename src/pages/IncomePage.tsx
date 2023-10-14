@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { FinanceState, Income } from "../reducer/FinanceReducer"
-import { getIncomeList, sortIncomeData } from "../actionCreators/actions"
+import { calculateTotalIncome, getIncomeList, sortIncomeData } from "../actionCreators/actions"
 import { DropdownWithLabel } from "../components/DropdownWithLabel"
 import { ThunkDispatch } from "redux-thunk"
 import { AnyAction } from "redux"
@@ -12,6 +12,7 @@ const IncomePage : React.FC  = () : JSX.Element=> {
     const [checked, setChecked] = useState<boolean>(false)
    
     const incomeList = useSelector((state : FinanceState)=>state.incomeList)
+    const totalAmount = useSelector((state: FinanceState)=>state.totalIncome)
     type AppDispatch = ThunkDispatch<FinanceState, void, AnyAction>;
 
     const dispatch : AppDispatch = useDispatch()
@@ -41,6 +42,9 @@ const IncomePage : React.FC  = () : JSX.Element=> {
    if(categories!=="Select"){
     filteredList = incomeList.filter((income)=>(income.category.includes(categories)))
    }
+
+
+   useEffect(()=>{dispatch(calculateTotalIncome())},[])
     
 
 
@@ -56,7 +60,8 @@ const IncomePage : React.FC  = () : JSX.Element=> {
                    <div key ={index}> {income.description}-{income.amount}-{income.category}</div>
                 ))
             }
-
+           <hr></hr>
+           <h2>Total : {totalAmount}</h2>
         </div>
     )
 }

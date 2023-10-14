@@ -57,7 +57,23 @@ export const sortExpensesData = () =>(
     }
 )
 
+export const calculateTotalIncome = () =>(
+  {
+      type: "CALCULATE_TOTAL_INCOME"
+  }
+)
 
+export const calculateTotalSavings = () =>(
+  {
+      type: "CALCULATE_TOTAL_SAVINGS"
+  }
+)
+
+export const calculateTotalExpenses = () =>(
+  {
+      type: "CALCULATE_TOTAL_EXPENSE"
+  }
+)
 
 export const getUsers = () :ThunkAction<void, FinanceState, unknown, AnyAction>   => async (dispatch : Dispatch) =>{
     try{
