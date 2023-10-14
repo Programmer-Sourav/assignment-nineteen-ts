@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { FinanceState} from "../reducer/FinanceReducer"
 
 
-export const SavingsPage : React.FC  = () : JSX.Element =>{
+const SavingsPage : React.FC  = () : JSX.Element =>{
    const dispatch = useDispatch()
    const savingsList = useSelector((state: FinanceState)=>state.savingsList)
 
@@ -17,3 +17,5 @@ export const SavingsPage : React.FC  = () : JSX.Element =>{
         </div>
     )
 }
+
+export default SavingsPage

@@ -20,10 +20,15 @@ export type Savings = {
    category: string
 }
 
+export type User = {
+  username: string
+}
+
 export interface FinanceState {
     incomeList: Income[], 
     expenseList: Expense[], 
     savingsList: Savings[], 
+    users : User[]
 
     totalIncome: number, 
     totalExpense: number, 
@@ -34,6 +39,7 @@ const initialState : FinanceState =  {
    incomeList: [],
    expenseList: [], 
    savingsList: [], 
+   users : [],
 
    totalIncome : 0,
    totalExpense: 0,
@@ -47,6 +53,7 @@ type Action =
 | { type: "CALCULATE_TOTAL_INCOME"}
 | {type: "CALCULATE_TOTAL_EXPENSE"}
 | {type: "CALCULATE_TOTAL_SAVINGS"}
+| {type: "FETCH_USER_SUCCESS"}
 | {type: "SORT_DATA"}
 
 const financeReducer = (state  : FinanceState = initialState, action : Action ) : FinanceState =>{
@@ -54,17 +61,19 @@ const financeReducer = (state  : FinanceState = initialState, action : Action ) 
         case "FETCH_INCOME_SUCESS": 
             return {...state, incomeList : [...state.incomeList, action.payload]}
         case "FETCH_EXPENSE_SUCCESS": 
-
+             return {...state}
         case "FETCH_SAVINGS_SUCCESS": 
-
+             return {...state}
         case "CALCULATE_TOTAL_INCOME":
-
+             return {...state}
         case "CALCULATE_TOTAL_EXPENSE":
-
+            return {...state}
         case "CALCULATE_TOTAL_SAVINGS": 
-
+             return {...state}
         case "SORT_DATA":
-
+            return {...state}
+        case "FETCH_USER_SUCCESS": 
+            return {...state}    
         default: 
         return state   
     }

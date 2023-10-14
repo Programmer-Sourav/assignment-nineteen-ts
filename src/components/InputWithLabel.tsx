@@ -3,8 +3,8 @@ import { ChangeEvent } from "react";
 
 interface InputWithLabelProps {
     label: string, 
-    type: string, 
-    value: number, 
+    type: string , 
+    value: string | number, 
     onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
